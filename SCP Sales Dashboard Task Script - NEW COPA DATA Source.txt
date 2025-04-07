@@ -5,10 +5,10 @@
 
 --SHOW TASKS LIKE 'TSK_FELICIA_H_SCP_REPORT%';
 --DESC TASK TSK_FELICIA_H_MHS_GEO_DIST;
--- select *  from table(SBX_PSAS_DB.INFORMATION_SCHEMA.task_history(
---     scheduled_time_range_start=>dateadd('hour',-24,current_timestamp()),
---     result_limit => 10,
---     task_name=>'TSK_FELICIA_H_SCP_REPORT'));
+select *  from table(SBX_PSAS_DB.INFORMATION_SCHEMA.task_history(
+    scheduled_time_range_start=>dateadd('hour',-24,current_timestamp()),
+    result_limit => 10,
+    task_name=>'TSK_FELICIA_H_SCP_REPORT'));
     
 --alter task TSK_FELICIA_H_SCP_REPORT resume; --It was by default suspended  ( run this command Only first time since by default its suspended)
 -- execute task TSK_FELICIA_H_SCP_REPORT;
@@ -17,7 +17,7 @@
 CREATE OR REPLACE TASK TSK_FELICIA_H_SCP_REPORT
 
 WAREHOUSE = SBX_EA_GENERAL_FR_WH
-SCHEDULE = 'USING CRON 50 6 * * 0-6 America/Chicago' -- 6:50 AM on weekdays
+SCHEDULE = 'USING CRON 30 7 * * 0-6 America/Chicago' -- 7:30 AM on weekdays
 TIMESTAMP_INPUT_FORMAT = 'YYYY-MM-DD HH24'
 AS
 
